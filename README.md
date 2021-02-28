@@ -20,7 +20,7 @@ Run command from project root directory
 
 ### Coverall complexity : nlogn
 
-####Complexity breakdown : 
+#### Complexity breakdown : 
 
 input validation ( n : linear) + input sorting/ordering ( nlogn) + building new intervals ( n : linear) = nlogn
 
