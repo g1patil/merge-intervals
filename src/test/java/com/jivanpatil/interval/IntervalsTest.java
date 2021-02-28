@@ -18,13 +18,6 @@ class IntervalsTest {
     Intervals intervals = new Intervals();
 
     @Test
-    @DisplayName("TODO")
-    public void testBeginsFirst_BothAreEqual(){
-        boolean result = intervals.canIntervalBeRemoved(new Integer[]{10,100},new Integer[]{10,100});
-    }
-
-
-    @Test
     @DisplayName("Test to validate remove interval - when both input parameters are empty.")
     public void testRemoveInterval_BothIntervalEmpty(){
         List<Integer[]> result = intervals.removeIntervals(Collections.emptyList(),Collections.emptyList());
