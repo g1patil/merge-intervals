@@ -42,15 +42,16 @@ public class Intervals {
         while ( !includeIntervals.isEmpty() && !excludeIntervals.isEmpty() && includeFlag < includeIntervals.size()){
             List<Integer[]> newIntervals = removeOneInterval( includeIntervals.get(includeFlag), excludeIntervals.get(excludeFlag));
 
-            if(canIntervalBeRemoved(includeIntervals.get(includeFlag), excludeIntervals.get(excludeFlag))){
+            if( canIntervalBeRemoved(includeIntervals.get(includeFlag), excludeIntervals.get(excludeFlag)) || newIntervals.isEmpty()){
                 excludeIntervals.remove(excludeFlag);
             }
+
 
             /* Remove previous interval and add new ones at same position*/
             includeIntervals.remove(includeFlag);
             includeIntervals.addAll(includeFlag, newIntervals);
 
-            includeFlag++;
+            if(!newIntervals.isEmpty()){includeFlag++;}
         }
         return includeIntervals;
     }
@@ -86,7 +87,7 @@ public class Intervals {
         int firstStart = firstInterval[START_INDEX], firstEnd = firstInterval[END_INDEX];
         int secondStart = secondInterval[START_INDEX],secondEnd = secondInterval[END_INDEX];
 
-        if( !(doIntervalIntersect(firstInterval,secondInterval)) ){
+        if( doIntervalIntersect(firstInterval,secondInterval) ){
             return new Integer[]{Math.min(firstStart,secondStart) , Math.max(firstEnd,secondEnd)};
         }
         return null;
@@ -105,7 +106,7 @@ public class Intervals {
         int includeStart = includeInterval[START_INDEX], includeEnd = includeInterval[END_INDEX];
         int excludeStart = excludeInterval[START_INDEX],excludeEnd = excludeInterval[END_INDEX];
 
-        if(doIntervalIntersect(includeInterval, excludeInterval)){result.add(includeInterval);return result;}
+        if(!doIntervalIntersect(includeInterval, excludeInterval)){result.add(includeInterval);return result;}
 
         if(includeStart == excludeStart && includeEnd == excludeEnd){return List.of();}
 
@@ -135,7 +136,6 @@ public class Intervals {
      * Merges the overlapping intervals in the given list of intervals.
      * @param intervalList list of integer intervals
      * */
-    //TODO all tests are done
     private void mergeOverlappingIntervals(List<Integer[]> intervalList){
         int flagIndex = START_INDEX;
 
@@ -167,8 +167,8 @@ public class Intervals {
      * @return true, if two interval intersect , false otherwise
      * */
     public boolean doIntervalIntersect(final Integer[] intervalOne, final Integer[] intervalTwo){
-        return (intervalOne[END_INDEX] <  intervalTwo[START_INDEX] ) ||
-                (intervalTwo[END_INDEX] < intervalOne[START_INDEX] );
+        return !(intervalOne[END_INDEX] <  intervalTwo[START_INDEX]  ||
+                intervalTwo[END_INDEX] < intervalOne[START_INDEX] );
     }
 
 }

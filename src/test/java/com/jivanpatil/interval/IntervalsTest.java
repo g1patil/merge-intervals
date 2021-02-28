@@ -11,6 +11,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Test class to validate the interval operations.
+ * */
 class IntervalsTest {
     Intervals intervals = new Intervals();
 
@@ -289,7 +292,7 @@ class IntervalsTest {
         exclude.add(new Integer[]{1,100});
 
         List<Integer[]> result = intervals.removeIntervals(include,exclude);
-        Assertions.assertEquals(0, result.size());
+        Assertions.assertEquals(2, result.size());
 
     }
 
