@@ -34,8 +34,8 @@ public class Intervals {
         }
 
         /* sort the input parameters */
-        if( !includeIntervals.isEmpty()) { includeIntervals.sort(Comparator.comparingInt(o -> o[0])); }
-        if( !excludeIntervals.isEmpty()) { excludeIntervals.sort(Comparator.comparingInt(o -> o[0])); }
+        if( !includeIntervals.isEmpty()) { includeIntervals.sort(Comparator.comparingInt(o -> o[START_INDEX])); }
+        if( !excludeIntervals.isEmpty()) { excludeIntervals.sort(Comparator.comparingInt(o -> o[START_INDEX])); }
 
         mergeOverlappingIntervals(includeIntervals);
 
