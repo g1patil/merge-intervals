@@ -1,7 +1,5 @@
 package com.jivanpatil.interval;
-
 import com.jivanpatil.exception.InvalidInputException;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -46,7 +44,6 @@ public class Intervals {
                 excludeIntervals.remove(excludeFlag);
             }
 
-
             /* Remove previous interval and add new ones at same position*/
             includeIntervals.remove(includeFlag);
             includeIntervals.addAll(includeFlag, newIntervals);
@@ -74,7 +71,6 @@ public class Intervals {
 
         return (oneStart < twoStart && oneEnd > twoEnd) ||
                 (oneStart < twoEnd && twoEnd < oneEnd);
-
     }
 
     /**
