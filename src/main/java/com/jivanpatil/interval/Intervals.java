@@ -83,7 +83,7 @@ public class Intervals {
      * @param secondInterval second integer interval
      * @return combined interval of first and second , if two intersect/overlap, NULL otherwise
      * */
-    public Integer[] mergeIntervals(Integer[] firstInterval, Integer[] secondInterval){
+    public Integer[] mergeIntervals(final Integer[] firstInterval, final Integer[] secondInterval){
         int firstStart = firstInterval[START_INDEX], firstEnd = firstInterval[END_INDEX];
         int secondStart = secondInterval[START_INDEX],secondEnd = secondInterval[END_INDEX];
 
