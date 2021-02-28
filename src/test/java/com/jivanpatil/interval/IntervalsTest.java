@@ -480,12 +480,6 @@ class IntervalsTest {
     }
 
     @Test
-    @DisplayName("Test to validate if the interval begins first")
-    public void testBeginsFirst(){
-        //TODO
-    }
-
-    @Test
     @DisplayName("Test to validate input - invalid input provided")
     public void testIsInputValid(){
         List<Integer[]> integerIntervals = new LinkedList<>();
