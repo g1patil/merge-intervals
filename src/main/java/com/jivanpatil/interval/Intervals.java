@@ -25,7 +25,7 @@ public class Intervals {
      * @return List of intervals, after removing the excludeIntervals intervals from includeIntervals.
      * If the resultant list has the overlapping intervals , then combines/merges them.
      * */
-    public List<Integer[]> removeIntervals(List<Integer[]> includeIntervals, List<Integer[]> excludeIntervals){
+    public List<Integer[]> mergeIntervals(List<Integer[]> includeIntervals, List<Integer[]> excludeIntervals){
         int includeFlag = START_INDEX;
         int excludeFlag = START_INDEX;
 
@@ -83,7 +83,7 @@ public class Intervals {
      * @param secondInterval second integer interval
      * @return combined interval of first and second , if two intersect/overlap, NULL otherwise
      * */
-    public Integer[] removeIntervals(Integer[] firstInterval, Integer[] secondInterval){
+    public Integer[] mergeIntervals(Integer[] firstInterval, Integer[] secondInterval){
         int firstStart = firstInterval[START_INDEX], firstEnd = firstInterval[END_INDEX];
         int secondStart = secondInterval[START_INDEX],secondEnd = secondInterval[END_INDEX];
 
@@ -140,7 +140,7 @@ public class Intervals {
         int flagIndex = START_INDEX;
 
         while ( flagIndex < intervalList.size()-1 ){
-            Integer[] mergedInterval = removeIntervals(intervalList.get(flagIndex),intervalList.get(flagIndex+1));
+            Integer[] mergedInterval = mergeIntervals(intervalList.get(flagIndex),intervalList.get(flagIndex+1));
             if(mergedInterval != null){
                 intervalList.remove(flagIndex);
                 intervalList.remove(flagIndex);

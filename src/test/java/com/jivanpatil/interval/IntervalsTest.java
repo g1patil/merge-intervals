@@ -20,7 +20,7 @@ class IntervalsTest {
     @Test
     @DisplayName("Test to validate remove interval - when both input parameters are empty.")
     public void testRemoveInterval_BothIntervalEmpty(){
-        List<Integer[]> result = intervals.removeIntervals(Collections.emptyList(),Collections.emptyList());
+        List<Integer[]> result = intervals.mergeIntervals(Collections.emptyList(),Collections.emptyList());
         Assertions.assertTrue(result.isEmpty());
     }
 
@@ -29,7 +29,7 @@ class IntervalsTest {
     public void testRemoveInterval_FirstIntervalEmpty(){
         List<Integer[]> integerIntervals = new ArrayList<>();
         integerIntervals.add(new Integer[]{10,100});
-        List<Integer[]> result = intervals.removeIntervals(Collections.emptyList(),integerIntervals);
+        List<Integer[]> result = intervals.mergeIntervals(Collections.emptyList(),integerIntervals);
         Assertions.assertTrue(result.isEmpty());
     }
 
@@ -39,7 +39,7 @@ class IntervalsTest {
         List<Integer[]> integerIntervals = new ArrayList<>();
         integerIntervals.add(new Integer[]{10,100});
 
-        List<Integer[]> result = intervals.removeIntervals(integerIntervals,Collections.emptyList());
+        List<Integer[]> result = intervals.mergeIntervals(integerIntervals,Collections.emptyList());
         Assertions.assertArrayEquals(integerIntervals.get(0),result.get(0));
     }
 
@@ -66,7 +66,7 @@ class IntervalsTest {
         expectedResult.add(new Integer[]{10,49});
         expectedResult.add(new Integer[]{61,100});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(includeInterval, excludeInterval);
+        List<Integer[]> actualResult = intervals.mergeIntervals(includeInterval, excludeInterval);
         Assertions.assertArrayEquals(expectedResult.get(0),actualResult.get(0));
         Assertions.assertArrayEquals(expectedResult.get(1),actualResult.get(1));
         Assertions.assertEquals(expectedResult.size(),actualResult.size());
@@ -85,7 +85,7 @@ class IntervalsTest {
         List<Integer[]> excludeInterval = new ArrayList<>();
         excludeInterval.add(new Integer[]{95,110});
 
-        List<Integer[]> result = intervals.removeIntervals(includeInterval, excludeInterval);
+        List<Integer[]> result = intervals.mergeIntervals(includeInterval, excludeInterval);
         Assertions.assertArrayEquals(result.get(0),new Integer[]{10,94});
 
     }
@@ -103,7 +103,7 @@ class IntervalsTest {
         List<Integer[]> excludeInterval = new ArrayList<>();
         excludeInterval.add(new Integer[]{5,50});
 
-        List<Integer[]> result = intervals.removeIntervals(includeInterval, excludeInterval);
+        List<Integer[]> result = intervals.mergeIntervals(includeInterval, excludeInterval);
         Assertions.assertArrayEquals(new Integer[]{51,100},result.get(0));
 
     }
@@ -126,7 +126,7 @@ class IntervalsTest {
         expectedResult.add(new Integer[]{400,409});
         expectedResult.add(new Integer[]{421,500});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(includeInterval, excludeInterval);
+        List<Integer[]> actualResult = intervals.mergeIntervals(includeInterval, excludeInterval);
 
         for(int index = 0; index < expectedResult.size();index++){
             Assertions.assertArrayEquals(expectedResult.get(index),actualResult.get(index));
@@ -147,7 +147,7 @@ class IntervalsTest {
         expectedResult.add(new Integer[]{10,94});
         expectedResult.add(new Integer[]{206,300});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(includeInterval, excludeInterval);
+        List<Integer[]> actualResult = intervals.mergeIntervals(includeInterval, excludeInterval);
 
         for(int index = 0; index < expectedResult.size();index++){
             Assertions.assertArrayEquals(expectedResult.get(index),actualResult.get(index));
@@ -163,7 +163,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{70,100});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(include,exclude);
+        List<Integer[]> actualResult = intervals.mergeIntervals(include,exclude);
         Assertions.assertArrayEquals(actualResult.get(0),include.get(0));
 
     }
@@ -179,7 +179,7 @@ class IntervalsTest {
         exclude.add(new Integer[]{10,50});
         exclude.add(new Integer[]{100,200});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(include,exclude);
+        List<Integer[]> actualResult = intervals.mergeIntervals(include,exclude);
         Assertions.assertTrue(actualResult.isEmpty());
 
     }
@@ -193,7 +193,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{1,25});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertArrayEquals(result.get(0),new Integer[]{26,50});
 
     }
@@ -207,7 +207,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{1,25});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertArrayEquals(result.get(0),include.get(0));
 
     }
@@ -222,7 +222,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{50,100});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertArrayEquals(result.get(0),include.get(0));
         Assertions.assertEquals(result.size(),1);
 
@@ -238,7 +238,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{1,25});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertArrayEquals(result.get(0),include.get(0));
         Assertions.assertEquals(result.size(),1);
 
@@ -253,7 +253,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{2,99});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertArrayEquals(result.get(0),new Integer[]{1,1});
         Assertions.assertArrayEquals(result.get(1),new Integer[]{100,100});
         Assertions.assertEquals(result.size(),2);
@@ -269,7 +269,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{1,10});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertArrayEquals(result.get(0),new Integer[]{11,100});
         Assertions.assertEquals(result.size(),1);
 
@@ -284,7 +284,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{1,100});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertEquals(2, result.size());
 
     }
@@ -299,7 +299,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{100,120});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertEquals(result.size(),2);
 
     }
@@ -314,7 +314,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{1,10});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertEquals(result.size(),2);
 
     }
@@ -328,7 +328,7 @@ class IntervalsTest {
 
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{1,10});
-        Assertions.assertThrows(InvalidInputException.class,()->intervals.removeIntervals(include,exclude));
+        Assertions.assertThrows(InvalidInputException.class,()->intervals.mergeIntervals(include,exclude));
 
     }
 
@@ -342,7 +342,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{200,300});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertEquals(1,result.size());
         Assertions.assertArrayEquals(new Integer[]{1,100},result.get(0));
     }
@@ -356,7 +356,7 @@ class IntervalsTest {
         List<Integer[]> exclude = new ArrayList<>();
         exclude.add(new Integer[]{50,100});
 
-        List<Integer[]> result = intervals.removeIntervals(include,exclude);
+        List<Integer[]> result = intervals.mergeIntervals(include,exclude);
         Assertions.assertEquals(1,result.size());
         Assertions.assertArrayEquals(include.get(0),result.get(0));
     }
@@ -373,7 +373,7 @@ class IntervalsTest {
         List<Integer[]> expectedResult = new ArrayList<>();
         expectedResult.add(new Integer[]{-100,49});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(includeIntervals,excludeIntervals);
+        List<Integer[]> actualResult = intervals.mergeIntervals(includeIntervals,excludeIntervals);
         Assertions.assertEquals(1, actualResult.size());
         Assertions.assertArrayEquals(expectedResult.get(0), actualResult.get(0));
     }
@@ -388,7 +388,7 @@ class IntervalsTest {
         List<Integer[]> expectedResult = new ArrayList<>();
         expectedResult.add(new Integer[]{1,75});
 
-        Integer[] actualResult = intervals.removeIntervals(
+        Integer[] actualResult = intervals.mergeIntervals(
                 integerIntervals.get(0),
                 integerIntervals.get(1)
         );
@@ -407,7 +407,7 @@ class IntervalsTest {
         List<Integer[]> expectedResult = new ArrayList<>();
         expectedResult.add(new Integer[]{1,75});
 
-        Integer[] actualResult = intervals.removeIntervals(
+        Integer[] actualResult = intervals.mergeIntervals(
                 integerIntervals.get(0),
                 integerIntervals.get(1)
         );
@@ -425,7 +425,7 @@ class IntervalsTest {
         List<Integer[]> expectedResult = new ArrayList<>();
         expectedResult.add(new Integer[]{1,100});
 
-        Integer[] actualResult = intervals.removeIntervals(
+        Integer[] actualResult = intervals.mergeIntervals(
                 integerIntervals.get(0),
                 integerIntervals.get(1)
         );
@@ -439,7 +439,7 @@ class IntervalsTest {
         List<Integer[]> integerIntervals = new LinkedList<>();
         integerIntervals.add(new Integer[]{1,50});
         integerIntervals.add(new Integer[]{60,100});
-        Integer[] actualResult = intervals.removeIntervals(
+        Integer[] actualResult = intervals.mergeIntervals(
                 integerIntervals.get(0),
                 integerIntervals.get(1)
         );
@@ -453,7 +453,7 @@ class IntervalsTest {
         List<Integer[]> integerIntervals = new LinkedList<>();
         integerIntervals.add(new Integer[]{60,100});
         integerIntervals.add(new Integer[]{1,50});
-        Integer[] actualResult = intervals.removeIntervals(
+        Integer[] actualResult = intervals.mergeIntervals(
                 integerIntervals.get(0),
                 integerIntervals.get(1)
         );
@@ -471,7 +471,7 @@ class IntervalsTest {
         List<Integer[]> expectedResult = new ArrayList<>();
         expectedResult.add(new Integer[]{1,50});
 
-        Integer[] actualResult = intervals.removeIntervals(
+        Integer[] actualResult = intervals.mergeIntervals(
                 integerIntervals.get(0),
                 integerIntervals.get(1)
         );
@@ -510,7 +510,7 @@ class IntervalsTest {
         expectedResult.add(new Integer[]{1,75});
         expectedResult.add(new Integer[]{100,150});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(
+        List<Integer[]> actualResult = intervals.mergeIntervals(
                 integerIntervals,
                 List.of()
         );
@@ -531,7 +531,7 @@ class IntervalsTest {
         List<Integer[]> expectedResult = new ArrayList<>();
         expectedResult.add(new Integer[]{1,150});
 
-        List<Integer[]> actualResult = intervals.removeIntervals(
+        List<Integer[]> actualResult = intervals.mergeIntervals(
                 integerIntervals,
                 List.of()
         );
