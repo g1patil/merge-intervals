@@ -44,9 +44,9 @@ class IntervalsTest {
     }
 
     @Test
-    @DisplayName("TODO : Test to validate remove interval - when input parameter is null.")
+    @DisplayName("Test to validate remove interval - when input parameter is null.")
     public void testMergeInterval_NullInterval(){
-
+        Assertions.assertThrows(InvalidInputException.class, ()->intervals.mergeIntervals(null,List.of()));
     }
 
     /**

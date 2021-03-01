@@ -20,12 +20,17 @@ public class Intervals {
      * list as we proceed.
      * @param includeIntervals List of integer intervals. From this interval, other one will be removed.
      * @param excludeIntervals List of intervals which are needs to be removed.
+     * @throws InvalidInputException invalid input exception if there is bad input.
      * @return List of intervals, after removing the excludeIntervals intervals from includeIntervals.
      * If the resultant list has the overlapping intervals , then combines/merges them.
      * */
     public List<Integer[]> mergeIntervals(List<Integer[]> includeIntervals, List<Integer[]> excludeIntervals){
         int includeFlag = START_INDEX;
         int excludeFlag = START_INDEX;
+
+        if(includeIntervals == null || excludeIntervals == null){
+            throw new InvalidInputException(INVALID_INPUT_ERROR);
+        }
 
         if(!isInputValid(includeIntervals) || !isInputValid(excludeIntervals)){
             throw new InvalidInputException(INVALID_INPUT_ERROR);
